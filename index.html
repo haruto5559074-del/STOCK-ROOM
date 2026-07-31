@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>STOCKROOM — Full Inventory Storefront</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='%23121210'/%3E%3Ctext x='50' y='68' font-family='monospace' font-size='58' fill='%23e8a33d' text-anchor='middle'%3ES%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@600;700;800&family=IBM+Plex+Mono:wght@400;500;600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- ============ HEADER ============ -->
+<header class="site-header">
+  <div class="wrap header-row">
+    <a href="#/" class="wordmark" aria-label="Stockroom home">
+      <span class="wordmark-mark">▣</span> STOCKROOM
+    </a>
+    <nav class="header-actions">
+      <div class="search-wrap">
+        <input id="searchInput" type="text" class="search-input" placeholder="Search inventory…" aria-label="Search products">
+        <span class="search-icon">⌕</span>
+      </div>
+      <button id="cartBtn" class="cart-btn" aria-haspopup="dialog" aria-label="Open cart">
+        <span class="cart-icon">◫</span>
+        <span class="cart-label">CART</span>
+        <span id="cartCount" class="cart-count">0</span>
+      </button>
+    </nav>
+  </div>
+  <div class="barcode-strip" aria-hidden="true"></div>
+</header>
+
+<!-- ============ APP ROOT (routed views) ============ -->
+<main id="app" class="app-root"></main>
+
+<!-- ============ FOOTER ============ -->
+<footer class="site-footer">
+  <div class="wrap footer-row">
+    <span>STOCKROOM — a Neuro Five capstone build</span>
+    <span class="footer-dot">·</span>
+    <span>catalog data via Fake Store API</span>
+  </div>
+</footer>
+
+<!-- ============ CART DRAWER ============ -->
+<div id="cartOverlay" class="cart-overlay" hidden></div>
+<aside id="cartDrawer" class="cart-drawer" role="dialog" aria-modal="true" aria-label="Shopping cart" hidden>
+  <div class="cart-drawer-head">
+    <h2>YOUR CART <span class="tag-mono" id="drawerCount">0 items</span></h2>
+    <button id="closeCartBtn" class="icon-btn" aria-label="Close cart">✕</button>
+  </div>
+  <div id="cartItems" class="cart-items"></div>
+  <div class="cart-drawer-foot">
+    <div class="cart-total-row">
+      <span>SUBTOTAL</span>
+      <span id="cartTotal" class="cart-total-amount">$0.00</span>
+    </div>
+    <button id="checkoutBtn" class="btn btn-primary btn-block" disabled>PROCEED TO CHECKOUT</button>
+  </div>
+</aside>
+
+<!-- ============ TOAST ============ -->
+<div id="toastHost" class="toast-host" aria-live="polite"></div>
+
+<!-- ============ TEMPLATES ============ -->
+<template id="tpl-product-card">
+  <article class="p-card">
+    <a class="p-card-media" href="#">
+      <img loading="lazy" alt="">
+      <span class="p-card-tag"></span>
+    </a>
+    <div class="p-card-body">
+      <span class="p-card-eyebrow"></span>
+      <a class="p-card-title" href="#"></a>
+      <div class="p-card-foot">
+        <span class="price-sticker"></span>
+        <button class="btn btn-small btn-add">ADD</button>
+      </div>
+    </div>
+  </article>
+</template>
+
+<template id="tpl-cart-line">
+  <div class="cart-line">
+    <img class="cart-line-img" alt="">
+    <div class="cart-line-mid">
+      <p class="cart-line-title"></p>
+      <span class="cart-line-price"></span>
+      <div class="qty-stepper">
+        <button class="qty-btn qty-minus" aria-label="Decrease quantity">−</button>
+        <span class="qty-value">1</span>
+        <button class="qty-btn qty-plus" aria-label="Increase quantity">+</button>
+      </div>
+    </div>
+    <button class="cart-line-remove" aria-label="Remove item">✕</button>
+  </div>
+</template>
+
+<script src="app.js"></script>
+</body>
+</html>
